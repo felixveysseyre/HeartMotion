@@ -1,11 +1,11 @@
 function [] = displaySequence(imagesSequence, format)
 
     numberOfImages = imagesSequence.getNumberOfElements();
-
-    colormap gray;
     
-    n = ceil(sqrt(format*numberOfImages));
-    m = ceil(sqrt(1/format*numberOfImages));
+    [n, m] = getSubplotSize(numberOfImages, format);
+
+    figure();
+    colormap gray;
 
     for i = 1:1:numberOfImages
         

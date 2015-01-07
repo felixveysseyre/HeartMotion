@@ -1,13 +1,13 @@
 function [] = displayDifferences(imagesSequence, format)
 
     numberOfImages = imagesSequence.getNumberOfElements();
-
-    colormap gray;
     
-    n = ceil(sqrt(format*numberOfImages));
-    m = ceil(sqrt(1/format*numberOfImages));
+    [n, m] = getSubplotSize(numberOfImages - 1, format);
 
-    for i = 1:1:numberOfImages-1
+    figure();
+    colormap gray;
+
+    for i = 1:1:numberOfImages - 1
         
         subplot(m, n, i);
         
@@ -15,7 +15,8 @@ function [] = displayDifferences(imagesSequence, format)
         image2 = imagesSequence.getElement(i + 1);
         difference = abs(image2 - image1);
         
-        imagesc(difference); axis image;
+        imagesc(difference);
+        axis image;
         
     end
 
