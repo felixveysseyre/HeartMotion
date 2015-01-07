@@ -49,8 +49,5 @@ function [velocitiesXSequence, velocitiesYSequence] = hornAndSchunck(imagesSeque
         velocitiesYSequence.addElement(Vy);
         
     end
-            
-    %velocitiesXSequence
-    %velocitiesYSequence
 
 end
