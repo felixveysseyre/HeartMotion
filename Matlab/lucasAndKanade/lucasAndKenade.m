@@ -1,6 +1,8 @@
-function [velocitiesXSequence, velocitiesYSequence] = lucasAndKenade(imagesSequence, blockSize)
+function [velocitiesXSequence, velocitiesYSequence] = lucasAndKenade(imagesSequence, blockSize, windowType)
 
     if mod(blockSize, 2) == 1
+        
+        window = getWindow(blockSize, windowType);
         
         l = (blockSize - 1) / 2;
         
@@ -31,6 +33,7 @@ function [velocitiesXSequence, velocitiesYSequence] = lucasAndKenade(imagesSeque
                     
                     A = [];
                     B = [];
+                    W = [];
                     
                     % Create A & B %
 
@@ -40,6 +43,7 @@ function [velocitiesXSequence, velocitiesYSequence] = lucasAndKenade(imagesSeque
                                 if j2 >= 1 && j2 <= size(2)
                                     A = [A; [Dx(i2, j2), Dy(i2, j2)]];
                                     B = [B; -Dt(i2, j2)];
+                                    W = [W; window(i2 - i + l + 1, j2 - j + l + 1)];
                                 end
                             end
                         end
@@ -48,7 +52,7 @@ function [velocitiesXSequence, velocitiesYSequence] = lucasAndKenade(imagesSeque
                     % Solve for U %
                     
                     %U = inv(A' * A) * A' * B;
-                    U = (A' * A) \ A' * B;
+                    U = (A' * ([W, W] .* A)) \ A' * (W .* B);
                     
                     % Store result %
                     
