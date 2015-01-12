@@ -12,7 +12,8 @@ function [] = displaySequence(imagesSequence, format)
         subplot(m, n, i);
         
         image = imagesSequence.getElement(i);
-        imagesc(image); axis image;
+        imagesc(image); axis image; axis off;
+        title(strcat('Sequence(', num2str(i),')'));
         
     end
 
