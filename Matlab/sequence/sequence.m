@@ -61,6 +61,14 @@ classdef sequence < handle
                 obj.addElement(image);
             end
         end
+        
+        function saveToImages(obj, path, extension, map)     
+            for i = 1:1:getNumberOfElements(obj)
+               image = normalizeImage(getElement(obj, i));
+               [image, ~] = gray2ind(image);
+               imwrite(image, map, strcat(path, num2str(i), '.', extension));
+            end
+        end
             
     end
     
