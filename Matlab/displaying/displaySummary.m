@@ -1,4 +1,4 @@
-function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, thresholdMin, thresholdMax)
+function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence)
 
     numberOfImages = imagesSequence.getNumberOfElements();
     size = imagesSequence.getSizeOfElements();
@@ -20,7 +20,7 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
         Vx = velocitiesXSequence.getElement(i);
         Vy = velocitiesYSequence.getElement(i);
 
-        [Xtemp, Ytemp] = thresholdField(Vx, Vy, X, Y, thresholdMin, thresholdMax);
+        [Xtemp, Ytemp] = autoThresholdField(Vx, Vy, X, Y);
         
         % Motion field %
 

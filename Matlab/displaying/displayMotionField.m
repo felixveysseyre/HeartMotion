@@ -1,4 +1,4 @@
-function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocitiesYSequence, thresholdMin, thresholdMax, format)
+function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocitiesYSequence, format)
 
     numberOfImages = imagesSequence.getNumberOfElements();
     size = imagesSequence.getSizeOfElements();
@@ -18,8 +18,7 @@ function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocities
         Vx = velocitiesXSequence.getElement(i);
         Vy = velocitiesYSequence.getElement(i);
 
-        %[Xtemp, Ytemp] = thresholdField(flipud(Vx), flipud(Vy), X, Y, thresholdMin, thresholdMax);
-        [Xtemp, Ytemp] = thresholdField(Vx, Vy, X, Y, thresholdMin, thresholdMax);
+        [Xtemp, Ytemp] = autoThresholdField(Vx, Vy, X, Y);
  
         subplot(m, n, i);         
         hold on; 
