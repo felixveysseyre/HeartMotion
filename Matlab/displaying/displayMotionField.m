@@ -1,4 +1,4 @@
-function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocitiesYSequence, format)
+function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocitiesYSequence, format, quiverFactor)
 
     numberOfImages = imagesSequence.getNumberOfElements();
     size = imagesSequence.getSizeOfElements();
@@ -17,13 +17,15 @@ function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocities
         image = imagesSequence.getElement(i+1);
         Vx = velocitiesXSequence.getElement(i);
         Vy = velocitiesYSequence.getElement(i);
-
-        [Xtemp, Ytemp] = autoThresholdField(Vx, Vy, X, Y);
+        
+        [Xd, Yd, Vxd, Vyd] = dessimateMotionField(X, Y, Vx, Vy, quiverFactor);
+        [Xd, Yd] = autoThresholdField(Vxd, Vyd, Xd, Yd);
  
         subplot(m, n, i);         
         hold on; 
         imagesc(flipud(image)); axis image;
-        quiver(Xtemp, Ytemp, Vx, Vy, 'r'); axis image; axis off;
+        quiver(Xd, Yd, -Vxd, Vyd, 'r'); axis image; axis off;
+        %quiver(X, Y, -Vx, Vy, 'r'); axis image; axis off;
         title(strcat('Motionfield(', num2str(i), ',', num2str(i+1),')'));
         
     end

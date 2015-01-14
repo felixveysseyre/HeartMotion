@@ -1,4 +1,4 @@
-function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence)
+function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, quiverFactor)
 
     numberOfImages = imagesSequence.getNumberOfElements();
     size = imagesSequence.getSizeOfElements();
@@ -20,7 +20,8 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
         Vx = velocitiesXSequence.getElement(i);
         Vy = velocitiesYSequence.getElement(i);
 
-        [Xtemp, Ytemp] = autoThresholdField(Vx, Vy, X, Y);
+        [Xd, Yd, Vxd, Vyd] = dessimateMotionField(X, Y, Vx, Vy, quiverFactor);
+        [Xd, Yd] = autoThresholdField(Vxd, Vyd, Xd, Yd);
         
         % Motion field %
 
@@ -28,7 +29,7 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
         hold on;
         colormap gray;
         imagesc(flipud(image2)); axis image; axis off;
-        quiver(Xtemp, Ytemp, Vx, Vy, 'r'); axis image; axis off;
+        quiver(Xd, Yd, Vxd, -Vyd, 'r'); axis image; axis off;
         title(strcat('Motionfield(', num2str(i), ',', num2str(i+1),')'));
         
         % Norm %
