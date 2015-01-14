@@ -3,6 +3,8 @@ function [X, Y] = autoThresholdField(Vx, Vy, X, Y)
     [h, w] = size(Vx);
     
     norm = sqrt(Vx .* Vx + Vy .* Vy);
+
+    norm(isnan(norm)) = 0;
     
     thresholdedNorm = imquantize(norm, multithresh(norm, 5));
     
