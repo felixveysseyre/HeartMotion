@@ -63,13 +63,17 @@ classdef sequence < handle
         end
         
         function fillFromTestingSequence(obj, dataDirectory, sequenceName)
-            [imagesFilenames, type] = getTestingSequenceInfo(dataDirectory, sequenceName);
+            [imageFilenames, type] = getTestingSequenceInfo(dataDirectory, sequenceName);
             
             if strcmp(type, 'image') == 1
-                obj.fillFromImages(imagesFilenames);
+                
             elseif strcmp(type, 'DICOM') == 1
-                obj.fillFromDICOMs(imagesFilenames);
+                
             end
+                
+                
+            
+            
         end
         
         function saveToImages(obj, path, extension, map)     
