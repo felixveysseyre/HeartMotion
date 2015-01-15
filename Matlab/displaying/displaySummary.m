@@ -1,4 +1,4 @@
-function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, quiverFactor)
+function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, quiverFactor, autoTresholding)
 
     numberOfImages = imagesSequence.getNumberOfElements();
     size = imagesSequence.getSizeOfElements();
@@ -21,7 +21,10 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
         Vy = velocitiesYSequence.getElement(i);
 
         [Xd, Yd, Vxd, Vyd] = dessimateMotionField(X, Y, Vx, Vy, quiverFactor);
-        [Xd, Yd] = autoThresholdField(Vxd, Vyd, Xd, Yd);
+        
+        if autoTresholding == 1
+            [Xd, Yd] = autoThresholdField(Vxd, Vyd, Xd, Yd);
+        end
         
         % Motion field %
 

@@ -1,4 +1,4 @@
-function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocitiesYSequence, format, quiverFactor)
+function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocitiesYSequence, format, quiverFactor, autoTresholding)
 
     numberOfImages = imagesSequence.getNumberOfElements();
     size = imagesSequence.getSizeOfElements();
@@ -19,7 +19,10 @@ function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocities
         Vy = velocitiesYSequence.getElement(i);
         
         [Xd, Yd, Vxd, Vyd] = dessimateMotionField(X, Y, Vx, Vy, quiverFactor);
-        [Xd, Yd] = autoThresholdField(Vxd, Vyd, Xd, Yd);
+        
+        if autoTresholding == 1
+            [Xd, Yd] = autoThresholdField(Vxd, Vyd, Xd, Yd);
+        end
  
         subplot(m, n, i);         
         hold on; 
