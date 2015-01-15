@@ -48,27 +48,27 @@ classdef sequence < handle
            element = obj.elements{i}; 
         end
         
-        function fillFromImages(obj, imagesFilenames)
-            for i = 1:1:length(imagesFilenames)
+        function fillFromImages(obj, imagesFilenames, limit)
+            for i = 1:1:min(length(imagesFilenames), limit) 
                 image = double(imread(imagesFilenames{i}));
                 obj.addElement(image);
             end
         end
         
-        function fillFromDICOMs(obj, imagesFilenames)
-            for i = 1:1:length(imagesFilenames)
+        function fillFromDICOMs(obj, imagesFilenames, limit)
+            for i = 1:1:min(length(imagesFilenames), limit)
                 image = double(dicomread(imagesFilenames{i}));
                 obj.addElement(image);
             end
         end
         
-        function fillFromTestingSequence(obj, dataDirectory, sequenceName)
+        function fillFromTestingSequence(obj, dataDirectory, sequenceName, limit)
             [imagesFilenames, type] = getTestingSequenceInfo(dataDirectory, sequenceName);
             
             if strcmp(type, 'image') == 1
-                obj.fillFromImages(imagesFilenames);
+                obj.fillFromImages(imagesFilenames, limit);
             elseif strcmp(type, 'DICOM') == 1
-                obj.fillFromDICOMs(imagesFilenames);
+                obj.fillFromDICOMs(imagesFilenames, limit);
             end
         end
         
