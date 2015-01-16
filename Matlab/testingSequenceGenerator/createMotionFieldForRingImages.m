@@ -5,8 +5,8 @@ function [Vx, Vy] = createMotionFieldForRingImages(h, w, image1, image2)
     Vx = zeros(h, w);
     Vy = zeros(h, w);
 
-    iC = round(h / 3);
-    jC = round(w / 4);
+    iC = round(h / 2);
+    jC = round(w / 2);
 
     diff = image1 - image2; 
 

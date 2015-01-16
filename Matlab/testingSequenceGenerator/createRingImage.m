@@ -4,8 +4,8 @@ function [image] = createRingImage(h, w, Ra, Rb, vIn, vOut, blurRatio)
     
     image = vOut*ones(h, w); 
     
-    iC = round(h / 3);
-    jC = round(w / 4);
+    iC = round(h / 2);
+    jC = round(w / 2);
 
     %% Drawing ring %% 
 
