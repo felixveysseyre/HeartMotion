@@ -7,8 +7,8 @@ function [velocitiesXSequence, velocitiesYSequence] = hornAndSchunck(imagesSeque
         
         %% Initialization %%
         
-        image1 = imagesSequence.getElement(i);
-        image2 = imagesSequence.getElement(i+1);
+        image1 = imagesSequence.getElement(i + 1);
+        image2 = imagesSequence.getElement(i);
         
         size = imagesSequence.getSizeOfElements();
 
@@ -45,8 +45,8 @@ function [velocitiesXSequence, velocitiesYSequence] = hornAndSchunck(imagesSeque
         
         %% Saveing %%
         
-        velocitiesXSequence.addElement(Vx);
-        velocitiesYSequence.addElement(Vy);
+        velocitiesXSequence.addElement(Vy);
+        velocitiesYSequence.addElement(Vx);
         
     end
 

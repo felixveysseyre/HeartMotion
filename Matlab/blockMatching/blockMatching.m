@@ -49,8 +49,8 @@ function [velocitiesXSequence, velocitiesYSequence] = blockMatching(imagesSequen
 
                 motionVector = blockCenter - closestBlockCenter;
 
-                Vx(i, j) = -motionVector(2);
-                Vy(i, j) = -motionVector(1);    
+                Vx(i, j) = motionVector(1);
+                Vy(i, j) = motionVector(2);    
 
             end
             
