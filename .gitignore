@@ -38,6 +38,7 @@ Thumbs.db
 
 # Specifics #
 
+*.*~
 .idea
 .dropbox
 Test/*
