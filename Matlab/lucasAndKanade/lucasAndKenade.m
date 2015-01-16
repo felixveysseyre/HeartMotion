@@ -51,8 +51,9 @@ function [velocitiesXSequence, velocitiesYSequence] = lucasAndKenade(imagesSeque
                     
                     % Solve for U %
                     
-                    %U = inv(A' * A) * A' * B;
-                    U = (A' * ([W, W] .* A)) \ A' * (W .* B);
+                    W = diag(W);
+                    
+                    U = pinv(W * A) * W * B;
                     
                     % Store result %
                     
