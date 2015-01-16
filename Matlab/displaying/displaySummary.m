@@ -5,9 +5,6 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
     
     [X, Y] = meshgrid(1:1:size(2), 1:1:size(1));
     
-    X = flipud(X);
-    Y = flipud(Y);
-    
     m = numberOfImages - 1;
     n = 4;
     
@@ -31,8 +28,8 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
         subplot(n, m, 0 * m + i);
         hold on;
         colormap gray;
-        imagesc(flipud(image2)); axis image; axis off;
-        quiver(Xd, Yd, Vxd, -Vyd, 'r'); axis image; axis off;
+        imagesc(image2); axis image; axis ij; axis off;
+        quiver(Xd, Yd, Vyd, Vxd, 'r'); axis image; axis ij; axis off;
         title(strcat('Motionfield(', num2str(i), ',', num2str(i+1),')'));
         
         % Norm %

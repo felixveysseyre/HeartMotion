@@ -1,13 +1,10 @@
 function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocitiesYSequence, format, quiverFactor, autoTresholding)
 
     numberOfImages = imagesSequence.getNumberOfElements();
-    size = imagesSequence.getSizeOfElements();
+    imageSize = imagesSequence.getSizeOfElements();
     
     [n, m] = getSubplotSize(numberOfImages - 1, format);
-    [X, Y] = meshgrid(1:1:size(2), 1:1:size(1));
-    
-    X = flipud(X);
-    Y = flipud(Y);
+    [X, Y] = meshgrid(1:1:imageSize(2), 1:1:imageSize(1));
 
     figure();
     colormap gray;
@@ -26,9 +23,8 @@ function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocities
  
         subplot(m, n, i);         
         hold on; 
-        imagesc(flipud(image)); axis image;
-        quiver(Xd, Yd, -Vxd, Vyd, 'r'); axis image; axis off;
-        %quiver(X, Y, -Vx, Vy, 'r'); axis image; axis off;
+        imagesc(image); axis image; axis ij; axis off;
+        quiver(Xd, Yd, Vyd, Vxd, 'r'); axis image; axis ij; axis off;
         title(strcat('Motionfield(', num2str(i), ',', num2str(i+1),')'));
         
     end

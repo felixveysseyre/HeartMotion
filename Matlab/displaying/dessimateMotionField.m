@@ -14,6 +14,5 @@ function [X, Y, Vx, Vy] = dessimateMotionField(X, Y, Vx, Vy, factor)
 
     Vx = Vx(1:inc:end, 1:inc:end);
     Vy = Vy(1:inc:end, 1:inc:end);
-
+    
 end
-
