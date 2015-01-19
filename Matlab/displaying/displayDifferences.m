@@ -9,7 +9,7 @@ function [] = displayDifferences(imagesSequence, format)
 
     for i = 1:1:numberOfImages - 1
         
-        subplot(m, n, i);
+        subaxis(n, m, i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
         
         image1 = imagesSequence.getElement(i);
         image2 = imagesSequence.getElement(i + 1);

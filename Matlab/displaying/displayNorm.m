@@ -14,7 +14,7 @@ function [] = displayNorm(imagesSequence, velocitiesXSequence, velocitiesYSequen
         
         norm = sqrt(Vx .* Vx + Vy .* Vy);
         
-        subplot(m, n, i);
+        subaxis(n, m, i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
         imagesc(norm);
         axis equal; axis image; axis off;
         title(strcat('Norm(', num2str(i), ',', num2str(i+1),')'));

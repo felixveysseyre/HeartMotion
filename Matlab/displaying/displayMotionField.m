@@ -21,7 +21,7 @@ function [] = displayMotionField(imagesSequence, velocitiesXSequence, velocities
             [Xd, Yd] = autoThresholdField(Vxd, Vyd, Xd, Yd);
         end
  
-        subplot(m, n, i);         
+        subaxis(n, m, i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);       
         hold on; 
         imagesc(image); axis image; axis ij; axis off;
         quiver(Xd, Yd, Vyd, Vxd, 'r'); axis image; axis ij; axis off;

@@ -9,7 +9,7 @@ function [] = displaySequence(imagesSequence, format)
 
     for i = 1:1:numberOfImages
         
-        subplot(m, n, i);
+        subaxis(n, m, i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
         
         image = imagesSequence.getElement(i);
         imagesc(image); axis image; axis off;

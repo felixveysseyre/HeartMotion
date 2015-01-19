@@ -4,7 +4,7 @@ function [n, m] = getSubplotSize(numberOfImages, format)
         n = 1;
         m = 1;
     else
-        n = round(sqrt(format * numberOfImages));
+        n = floor(sqrt(format * numberOfImages));
         m = round(numberOfImages / n);
     end
 

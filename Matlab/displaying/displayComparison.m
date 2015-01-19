@@ -23,7 +23,7 @@ function [] = displayComparison(imagesSequence, velocitiesXSequence, velocitiesY
         
         comparison = abs(difference - norm);
         
-        subplot(m, n, i);
+        subaxis(n, m, i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
         imagesc(comparison);
         axis equal; axis image; axis off;
         title(strcat('Comparison(', num2str(i), ',', num2str(i+1),')'));

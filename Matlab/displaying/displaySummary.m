@@ -25,7 +25,7 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
         
         % Motion field %
 
-        subplot(n, m, 0 * m + i);
+        subaxis(n, m, 0 * m + i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
         hold on;
         colormap gray;
         imagesc(image2); axis image; axis ij; axis off;
@@ -36,7 +36,7 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
         
         norm = sqrt(Vx .* Vx + Vy .* Vy);
         
-        subplot(n, m, 1 * m + i);
+        subaxis(n, m, 1 * m + i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
         colormap jet;
         imagesc(norm); axis image; axis off;
         title(strcat('Norm(', num2str(i), ',', num2str(i+1),')'));
@@ -45,7 +45,7 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
         
         difference = abs(image2 - image1);
         
-        subplot(n, m, 2 * m + i);
+        subaxis(n, m, 2 * m + i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
         colormap jet;
         imagesc(difference); axis image; axis off;
         title(strcat('Difference(', num2str(i), ',', num2str(i+1),')'));
@@ -54,7 +54,7 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
         
         comparison = abs(zscore(difference) - zscore(norm));
         
-        subplot(n, m, 3 * m + i);
+        subaxis(n, m, 3 * m + i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
         colormap jet;
         imagesc(comparison); axis image; axis off;
         title(strcat('Comparison(', num2str(i), ',', num2str(i+1),')'));
