@@ -14,6 +14,7 @@ addpath('../lucasAndKanade');
 addpath('../blockMatching');
 
 addpath('../testingSequenceGenerator');
+addpath('../external');
 
 %% Parameters %%
 
@@ -40,14 +41,15 @@ noiseRatio = 0.05;
 
 %% Displaying %%
 
-format = 4/3;
+format = 8/5;
 quiverFactor = 0.2;
 autoTresholding = 1;
+overlaying = 1;
 
 displaySequence(imagesSequence, format);
-%displayDifferences(imagesSequence, format)
+displayDifferences(imagesSequence, format)
 displayMotionField(imagesSequence, velocitiesXSequence, velocitiesYSequence, format, quiverFactor, autoTresholding);
-%displayNorm(imagesSequence, velocitiesXSequence, velocitiesYSequence, format);
-%displayComparison(imagesSequence, velocitiesXSequence, velocitiesYSequence, format);
+displayNorm(imagesSequence, velocitiesXSequence, velocitiesYSequence, format, overlaying);
+displayComparison(imagesSequence, velocitiesXSequence, velocitiesYSequence, format);
 
-%displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, 2*quiverFactor, autoTresholding);
+displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, 0.5*quiverFactor, autoTresholding, overlaying);

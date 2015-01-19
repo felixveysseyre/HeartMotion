@@ -14,11 +14,12 @@ addpath('../lucasAndKanade');
 addpath('../blockMatching');
 
 addpath('../testingSequenceGenerator');
+addpath('../external');
 
 %% Read images %%
 
 imagesSequence = sequence();
-imagesSequence.fillFromTestingSequence('../../Data/', 'TestingSequence3', Inf);
+imagesSequence.fillFromTestingSequence('../../Data/', 'Sequence2', 5);
 
 %% Compute velocities %%
 
@@ -51,15 +52,16 @@ end
 
 %% Display %%
 
-format = 4/3;
+format = 8/5;
 quiverFactor = 0.2;
 autoTresholding = 1;
+overlaying = 1;
 
-%displaySequence(imagesSequence, format);
-%displayDifferences(imagesSequence, format)
+displaySequence(imagesSequence, format);
+displayDifferences(imagesSequence, format)
 displayMotionField(imagesSequence, velocitiesXSequence, velocitiesYSequence, format, quiverFactor, autoTresholding);
-%displayNorm(imagesSequence, velocitiesXSequence, velocitiesYSequence, format);
-%displayComparison(imagesSequence, velocitiesXSequence, velocitiesYSequence, format);
+displayNorm(imagesSequence, velocitiesXSequence, velocitiesYSequence, format, overlaying);
+displayComparison(imagesSequence, velocitiesXSequence, velocitiesYSequence, format);
 
-%displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, 2*quiverFactor, autoTresholding);
+displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, 0.5*quiverFactor, autoTresholding, overlaying);
 
