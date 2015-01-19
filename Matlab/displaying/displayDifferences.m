@@ -13,9 +13,8 @@ function [] = displayDifferences(imagesSequence, format)
         
         image1 = imagesSequence.getElement(i);
         image2 = imagesSequence.getElement(i + 1);
-        difference = abs(image2 - image1);
         
-        imagesc(difference);
+        imshowpair(image1, image2);
         axis image;  axis off;
         title(strcat('Difference(', num2str(i), ',', num2str(i+1),')'));
         

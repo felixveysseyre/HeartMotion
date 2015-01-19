@@ -1,4 +1,4 @@
-function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, quiverFactor, autoTresholding)
+function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, quiverFactor, autoTresholding, overlaying)
 
     numberOfImages = imagesSequence.getNumberOfElements();
     size = imagesSequence.getSizeOfElements();
@@ -6,7 +6,7 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
     [X, Y] = meshgrid(1:1:size(2), 1:1:size(1));
     
     m = numberOfImages - 1;
-    n = 4;
+    n = 3;
     
     for i = 1:1:numberOfImages - 1
         
@@ -23,41 +23,38 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
             [Xd, Yd] = autoThresholdField(Vxd, Vyd, Xd, Yd);
         end
         
-        % Motion field %
-
+        % Differences %
+        
         subaxis(n, m, 0 * m + i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
-        hold on;
-        colormap gray;
-        imagesc(image2); axis image; axis ij; axis off;
-        quiver(Xd, Yd, Vyd, Vxd, 'r'); axis image; axis ij; axis off;
-        title(strcat('Motionfield(', num2str(i), ',', num2str(i+1),')'));
+        imshowpair(image1, image2); axis image; axis off;
+        title(strcat('Difference(', num2str(i), ',', num2str(i+1),')'));
         
         % Norm %
         
         norm = sqrt(Vx .* Vx + Vy .* Vy);
         
+        if overlaying
+            norm = imfuse(image1, norm, 'ColorChannels', [1, 2, 2]);
+        end
+        
+        if ~overlaying
+            colormap jet;
+        else
+            colormap gray;
+        end
+        
         subaxis(n, m, 1 * m + i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
-        colormap jet;
         imagesc(norm); axis image; axis off;
         title(strcat('Norm(', num2str(i), ',', num2str(i+1),')'));
         
-        % Differences %
-        
-        difference = abs(image2 - image1);
-        
+        % Motion field %
+
         subaxis(n, m, 2 * m + i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
-        colormap jet;
-        imagesc(difference); axis image; axis off;
-        title(strcat('Difference(', num2str(i), ',', num2str(i+1),')'));
-        
-        % Comparison %
-        
-        comparison = abs(zscore(difference) - zscore(norm));
-        
-        subaxis(n, m, 3 * m + i,'Spacing', 0.04, 'Padding', 0.0, 'Margin', 0.04);
-        colormap jet;
-        imagesc(comparison); axis image; axis off;
-        title(strcat('Comparison(', num2str(i), ',', num2str(i+1),')'));
+        hold on;
+        colormap gray;
+        imagesc(image2); axis image; axis ij; axis off;
+        quiver(Xd, Yd, Vyd, Vxd, 'r'); axis image; axis ij; axis off;
+        title(strcat('Motionfield(', num2str(i), ',', num2str(i+1),')'));
         
     end
 
