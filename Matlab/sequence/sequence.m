@@ -79,6 +79,19 @@ classdef sequence < handle
                imwrite(image, map, strcat(path, num2str(i), '.', extension));
             end
         end
+        
+        function filterWithWindow(obj, window)
+            for i = 1:1:getNumberOfElements(obj)
+               image = normalizeImage(getElement(obj, i));
+               filteredImage = conv2(image, window, 'same');
+               obj.elements{i} = filteredImage;
+            end
+        end
+        
+        function filter(obj, windowSize, windowType)
+            window = getWindow(windowSize, windowType);
+            obj.filterWithWindow(window);
+        end
             
     end
     
