@@ -4,16 +4,16 @@ close all;
 
 %% Paths %%
 
-addpath('./sequence');
+addpath('../sequence');
 
-addpath('./tools');
-addpath('./displaying');
+addpath('../tools');
+addpath('../displaying');
 
-addpath('./hornAndSchunck');
-addpath('./lucasAndKanade');
-addpath('./blockMatching');
+addpath('../hornAndSchunck');
+addpath('../lucasAndKanade');
+addpath('../blockMatching');
 
-addpath('./testingSequenceGenerator');
+addpath('../testingSequenceGenerator');
 
 %% Parameters %%
 

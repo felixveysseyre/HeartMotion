@@ -4,19 +4,21 @@ close all;
 
 %% Paths %%
 
-addpath('./sequence');
+addpath('../sequence');
 
-addpath('./tools');
-addpath('./displaying');
+addpath('../tools');
+addpath('../displaying');
 
-addpath('./hornAndSchunck');
-addpath('./lucasAndKanade');
-addpath('./blockMatching');
+addpath('../hornAndSchunck');
+addpath('../lucasAndKanade');
+addpath('../blockMatching');
+
+addpath('../testingSequenceGenerator');
 
 %% Read images %%
 
 imagesSequence = sequence();
-imagesSequence.fillFromTestingSequence('../Data/', 'Sequence2', 4);
+imagesSequence.fillFromTestingSequence('../../Data/', 'TestingSequence3', Inf);
 
 %% Compute velocities %%
 
@@ -50,7 +52,7 @@ end
 %% Display %%
 
 format = 4/3;
-quiverFactor = 0.1;
+quiverFactor = 0.2;
 autoTresholding = 1;
 
 %displaySequence(imagesSequence, format);
