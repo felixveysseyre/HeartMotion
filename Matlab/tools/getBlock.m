@@ -10,6 +10,6 @@ function [block] = getBlock(image, blockCenter, blockSize)
     iEnd = min(blockCenter(1) + radius, imageSize(1));
     jEnd = min(blockCenter(2) + radius, imageSize(2));
 
-    block = image(iStart:iEnd, jStart:jEnd); 
+    block = image(iStart:1:iEnd, jStart:1:jEnd);
 
 end

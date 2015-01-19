@@ -1,4 +1,4 @@
-function [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSequence, blockSize)
+function [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSequence, blockSize, resizingFactor)
 
     velocitiesXSequence = sequence();
     velocitiesYSequence = sequence();
@@ -37,9 +37,13 @@ function [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSeq
                 block1 = getBlock(image1, blockCenter, blockSize);
                 block2 = getBlock(image2, blockCenter, blockSize);
                 
-                correlation = getCorrelationPhase(block1, block2);
-                
-                motionVector = getMotionVector(correlation, blockSize, blockCenter);
+                [newBlock1, newBlock2, newBlockSize, newBlockCenter] = resizeBlocks(block1, block2, resizingFactor);
+        
+                correlation = getCorrelationPhase(newBlock1, newBlock2);
+
+                maxCoordinates = getMaxCoordinates(correlation, newBlockSize);  
+
+                motionVector = getMotionVector(newBlockCenter, maxCoordinates);
                 
                 Vx(i, j) = motionVector(2);
                 Vy(i, j) = motionVector(1);

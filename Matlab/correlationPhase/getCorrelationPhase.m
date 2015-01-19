@@ -4,7 +4,6 @@ function [R] = getCorrelationPhase(block1, block2)
     fftBlock2 = fft2(block2);
 
     product = fftBlock1 .* conj(fftBlock2);
-
     productNorm = norm(product);
 
     if productNorm ~= 0
