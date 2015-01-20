@@ -7,7 +7,7 @@ function [] = displayHornAndSchunkParemetersInfluence(imagesSequence, velocities
 
     for i = 1:1:numberOfAlphas
         Vx = velocitiesXSequences{i}.getElement(1);
-        Vy = velocitiesXSequences{i}.getElement(1);
+        Vy = velocitiesYSequences{i}.getElement(1);
         
         norm = sqrt(Vx .* Vx + Vy .* Vy);
         

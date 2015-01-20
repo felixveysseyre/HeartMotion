@@ -15,7 +15,7 @@ addpath('../lucasAndKanade');
 addpath('../blockMatching');
 
 addpath('../testingSequenceGenerator');
-addpath('../external/');
+addpath('../external');
 
 %% Read images %%
 
