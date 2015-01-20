@@ -44,4 +44,4 @@ end
 
 overlaying = 1;
 
-displayBlockMatchingParemetersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, overlaying);
+displayBlockMatchingParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, overlaying);

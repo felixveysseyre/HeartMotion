@@ -1,4 +1,4 @@
-function [] = displayHornAndSchunkParemetersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, alphas, overlaying)
+function [] = displayHornAndSchunkParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, alphas, overlaying)
 
     numberOfAlphas = length(alphas);
     image = imagesSequence.getElement(1);

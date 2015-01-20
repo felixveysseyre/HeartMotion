@@ -1,4 +1,4 @@
-function [] = displayBlockMatchingParemetersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, overlaying)
+function [] = displayBlockMatchingParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, overlaying)
 
     numberOfBlockSizes = length(blockSizes);
     image = imagesSequence.getElement(1);

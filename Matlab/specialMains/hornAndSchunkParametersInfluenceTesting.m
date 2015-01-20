@@ -46,4 +46,4 @@ end
 
 overlaying = 1;
 
-displayHornAndSchunkParemetersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, alphas, overlaying);
+displayHornAndSchunkParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, alphas, overlaying);

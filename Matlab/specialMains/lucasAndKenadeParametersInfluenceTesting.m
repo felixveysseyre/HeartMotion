@@ -13,7 +13,6 @@ addpath('../specialDisplaying');
 addpath('../hornAndSchunck');
 addpath('../lucasAndKanade');
 addpath('../blockMatching');
-addpath('../correlationPhase/');
 
 addpath('../testingSequenceGenerator');
 addpath('../external');
@@ -23,10 +22,10 @@ addpath('../external');
 imagesSequence = sequence();
 imagesSequence.fillFromTestingSequence('../../Data/', 'TestingSequence3', Inf);
 
-%% Correlation Phase - block size & resizing factor paremeter influence testing %%
+%% Lucas & Kanades - block size &  paremeter influence testing %%
 
 blockSizes = {1, 3, 5, 7};
-resizingFactors = {1, 3, 5, 7};
+windowTypes = {'uniform', 'hamming', 'gaussian'};
 
 velocitiesXSequences = [];
 velocitiesYSequences = [];
@@ -35,14 +34,11 @@ for i = 1:1:length(blockSizes)
     
     blockSize = blockSizes{i};
     
-    for j = 1:1:length(resizingFactors)
+    for j = 1:1:length(windowTypes)
         
-        resizingFactor = resizingFactors{j};
+        windowType = windowTypes{j};
         
-        filteringType = 'hamming';
-        filteringKernelSize = 5;
-        
-        [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSequence, blockSize, resizingFactor, filteringType, filteringKernelSize);
+        [velocitiesXSequence, velocitiesYSequence] = lucasAndKenade(imagesSequence, blockSize, windowType);
     
         velocitiesXSequences{i, j} = velocitiesXSequence;
         velocitiesYSequences{i, j} = velocitiesYSequence;
@@ -55,4 +51,4 @@ end
 
 overlaying = 1;
 
-displayPhaseCorrelationParemetersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, resizingFactors, overlaying);
+displayLucasAndKenadeParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, windowTypes, overlaying);
