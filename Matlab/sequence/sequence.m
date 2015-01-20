@@ -12,12 +12,21 @@ classdef sequence < handle
     
     methods
         
-        %% Constuctor %%
+        %% Constuctors %%
         
         function obj = sequence()
             obj.elements = {};
             obj.height = -1;
             obj.width = -1;
+        end
+        
+        function new = copy(obj)
+            new = feval(class(obj));
+            p = properties(obj);
+            
+            for i = 1:length(p)
+                new.(p{i}) = obj.(p{i});
+            end
         end
         
         %% Others methods %%

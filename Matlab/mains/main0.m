@@ -53,15 +53,18 @@ elseif methodUsed == 4
 
     %% Correlation Phase %%
 
-    blockSize = 23;
-    [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSequence, blockSize);
+    blockSize = 9;
+    resizingFactor = 5;
+    filteringType = 'hamming';
+    filteringKernelSize = 5;
+    [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSequence, blockSize, resizingFactor, filteringType, filteringKernelSize);
 
 end
 
 %% Display %%
 
 format = 8/5;
-quiverFactor = 0.2;
+quiverFactor = 0.1;
 autoTresholding = 1;
 overlaying = 1;
 
@@ -71,5 +74,5 @@ overlaying = 1;
 % displayNorm(imagesSequence, velocitiesXSequence, velocitiesYSequence, format, overlaying);
 % displayComparison(imagesSequence, velocitiesXSequence, velocitiesYSequence, format);
 
-displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, 0.5*quiverFactor, autoTresholding, overlaying);
+displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, quiverFactor, autoTresholding, overlaying);
 

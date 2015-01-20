@@ -1,4 +1,4 @@
-function [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSequence, blockSize, resizingFactor)
+function [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSequence, blockSize, resizingFactor, filteringType, filteringKernelSize)
 
     velocitiesXSequence = sequence();
     velocitiesYSequence = sequence();
@@ -15,13 +15,21 @@ function [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSeq
     
     iStep = 1;
     jStep = 1;
+    
+    %% Pre processing %%
+    
+    imagesFilteredSequence = imagesSequence.copy();
+    
+    imagesFilteredSequence.filter(filteringKernelSize, filteringType);
+    
+    %% Algorithm %%
 
-    for i = 1:1:imagesSequence.getNumberOfElements()-1
+    for i = 1:1:imagesFilteredSequence.getNumberOfElements()-1
         
         %% Initialization %%
         
-        image1 = imagesSequence.getElement(i);
-        image2 = imagesSequence.getElement(i + 1);
+        image1 = imagesFilteredSequence.getElement(i);
+        image2 = imagesFilteredSequence.getElement(i + 1);
 
         Vx = zeros(imageSize);
         Vy = zeros(imageSize);
