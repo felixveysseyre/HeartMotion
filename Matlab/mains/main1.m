@@ -18,32 +18,25 @@ addpath('../external');
 
 %% Parameters %%
 
-h = 250;
-w = 250;
+imageSize = [128, 128];
 
-Ra = 50;
-Rb = 75;
+formType = 'ellipse'; 
+formParameters = [20, 30, 5, 255, 0]; 
 
-vIn = 255;
-vOut = 0;
+transformationType = 'scaling';
+transformationParameters = [0.9]; 
 
-vMin = 0;
-vMax = 255;
-
-blurRatio = 1/25;
-
-delta = 10;
-noiseRatio = 0.05;
+postProcessingParameters = [0, 0, 0, 255];
 
 %% Computing %%
 
-[imagesSequence, velocitiesXSequence, velocitiesYSequence] = createRingSequence(h, w, Ra, Rb, vIn, vOut, delta, blurRatio, noiseRatio, vMin, vMax);
+[imagesSequence, velocitiesXSequence, velocitiesYSequence] = createTestingSequence(imageSize, formType, formParameters, transformationType, transformationParameters, postProcessingParameters);
 
 %% Displaying %%
 
 format = 8/5;
-quiverFactor = 0.2;
-autoTresholding = 1;
+quiverFactor = 1;
+autoTresholding = 0;
 overlaying = 1;
 
 displaySequence(imagesSequence, format);

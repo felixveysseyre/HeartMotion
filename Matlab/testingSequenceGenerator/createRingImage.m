@@ -1,11 +1,11 @@
-function [image] = createRingImage(h, w, Ra, Rb, vIn, vOut, blurRatio)
+function [image] = createRingImage(h, w, R, e, vIn, vOut)
 
     %% Initialization %%
     
-    image = vOut*ones(h, w); 
+    image = vOut * ones(h, w); 
     
-    iC = round(h / 2);
-    jC = round(w / 2);
+    i0 = round(h / 2);
+    j0 = round(w / 2);
 
     %% Drawing ring %% 
 
@@ -13,9 +13,9 @@ function [image] = createRingImage(h, w, Ra, Rb, vIn, vOut, blurRatio)
 
         for j = 1:1:w
 
-            dist = sqrt((iC - i)^2 + (jC - j)^2);
+            dist = sqrt((i0 - i)^2 + (j0 - j)^2);
 
-            if dist > Ra && dist < Rb
+            if dist > R && dist < R + e
                 
                 image(i, j) = vIn;
                 
@@ -25,17 +25,4 @@ function [image] = createRingImage(h, w, Ra, Rb, vIn, vOut, blurRatio)
 
     end
     
-    %% Bluring %%
-    
-    if blurRatio ~= 0
-        
-        blurSize = round(blurRatio * min(h, w));
-    
-        window = getWindow(blurSize, 'gaussian');
-
-        image = conv2(image, window, 'same');
-        
-    end
-
 end
-
