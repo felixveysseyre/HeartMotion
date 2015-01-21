@@ -11,7 +11,7 @@ function [Vx, Vy] = createMotionFieldForTranslation(h, w, image1, image2, transl
         
         for j = 1:1:w
             
-            if image1(i, j) ==  max(image1(:)) || image2(i, j) == max(image2(:))
+            if xor(image1(i, j) ==  max(image1(:)), image2(i, j) == max(image2(:)))
                 
                 vector = translationVector;              
                 Vx(i, j) = vector(1);

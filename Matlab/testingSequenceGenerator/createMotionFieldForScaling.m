@@ -12,7 +12,7 @@ function [Vx, Vy] = createMotionFieldForScaling( h, w, image1, image2, scalingFa
         
         for j = 1:1:w
             
-            if image1(i, j) ==  max(image1(:)) || image2(i, j) ==  max(image2(:))
+            if xor(image1(i, j) ==  max(image1(:)), image2(i, j) ==  max(image2(:)))
 
                 vector = [i0 - i, j0 - j];
                 dist = norm(vector) * (1 - scalingFactor);
