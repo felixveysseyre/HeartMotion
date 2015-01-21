@@ -1,15 +1,15 @@
-function [] = displayEPE(EPESequence)
+function [] = displayEPEs(EPEsSequence, format)
 
-    numberOfImages = EPESequence.getNumberOfElements();
+    numberOfEPEs = EPEsSequence.getNumberOfElements();
     
-    [n, m] = getSubplotSize(numberOfImages, format);
+    [n, m] = getSubplotSize(numberOfEPEs, format);
 
     figure();
     colormap jet;
 
-    for i = 1:1:numberOfImages
+    for i = 1:1:numberOfEPEs
         
-        EPE = EPESequence.getElement(i);
+        EPE = EPEsSequence.getElement(i);
 
         minEPE = 0;
         maxEPE = max(EPE(:));

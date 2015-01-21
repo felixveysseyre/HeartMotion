@@ -13,6 +13,6 @@ function [R] = getCorrelationPhase(block1, block2)
     end
 
     R = fftshift(ifft2(fftR));
-    % R = ifft2(R_fft);
+    %R = ifft2(fftR);
     
 end

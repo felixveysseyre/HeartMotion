@@ -1,6 +1,6 @@
-function [EPESequence] = computeEPE(theoricalVelocitiesXSequence, theoricalVelocitiesYSequence, experimentalVelocitiesXSequence, experimentalVelocitiesYSequence)
+function [EPEsSequence] = computeEPEs(theoricalVelocitiesXSequence, theoricalVelocitiesYSequence, experimentalVelocitiesXSequence, experimentalVelocitiesYSequence)
 
-    EPESequence = sequence();  
+    EPEsSequence = sequence();  
 
     for i = 1:1:theoricalVelocitiesXSequence.getNumberOfElements()
 
@@ -15,7 +15,7 @@ function [EPESequence] = computeEPE(theoricalVelocitiesXSequence, theoricalVeloc
 
         EPE = sqrt(diffVx .^ 2 + diffVy .^ 2);
 
-        EPESequence.addElement(EPE);
+        EPEsSequence.addElement(EPE);
 
     end
 
