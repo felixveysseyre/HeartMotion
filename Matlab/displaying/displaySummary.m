@@ -8,6 +8,8 @@ function [] = displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSeq
     m = numberOfImages - 1;
     n = 3;
     
+    figure();
+    
     for i = 1:1:numberOfImages - 1
         
         % Values %
