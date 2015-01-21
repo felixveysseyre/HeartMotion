@@ -11,22 +11,22 @@ addpath('../displaying');
 addpath('../specialDisplaying');
 
 addpath('../hornAndSchunck');
-addpath('../lucasAndKanade');
-addpath('../blockMatching');
 
 addpath('../testingSequenceGenerator');
 addpath('../external');
 
-%% Read images %%
+%% Create testing sequence %%
 
 imagesSequence = sequence();
-imagesSequence.fillFromTestingSequence('../../Data/', 'TestingSequence3', Inf);
+imagesSequence.fillFromTestingSequence('../../Data/', 'Sequence2', 2);
+
+displaySequence(imagesSequence, 8/5);
 
 %% Horn & Schunck - alpha paremeter influence testing %%
 
 numberOfIterations = 50;
 
-alphas = {0, 25, 50, 75};
+alphas = {50, 250, 500, 2000};
 
 velocitiesXSequences = [];
 velocitiesYSequences = [];
@@ -44,6 +44,5 @@ end
 
 %% Display %%
 
-overlaying = 1;
-
-displayHornAndSchunkParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, alphas, overlaying);
+displayHornAndSchunkParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, alphas, 1);
+displayHornAndSchunkParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, alphas, 0);

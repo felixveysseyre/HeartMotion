@@ -20,11 +20,13 @@ addpath('../external');
 %% Read images %%
 
 imagesSequence = sequence();
-imagesSequence.fillFromTestingSequence('../../Data/', 'TestingSequence3', Inf);
+imagesSequence.fillFromTestingSequence('../../Data/', 'Sequence2', 2);
+
+displaySequence(imagesSequence, 8/5);
 
 %% Lucas & Kanades - block size &  paremeter influence testing %%
 
-blockSizes = {1, 3, 5, 7};
+blockSizes = {9, 15, 21, 27};
 windowTypes = {'uniform', 'hamming', 'gaussian'};
 
 velocitiesXSequences = [];
@@ -49,6 +51,5 @@ end
 
 %% Display %%
 
-overlaying = 1;
-
-displayLucasAndKenadeParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, windowTypes, overlaying);
+displayLucasAndKenadeParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, windowTypes, 1);
+displayLucasAndKenadeParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, windowTypes, 0);

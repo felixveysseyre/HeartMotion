@@ -20,11 +20,13 @@ addpath('../external');
 %% Read images %%
 
 imagesSequence = sequence();
-imagesSequence.fillFromTestingSequence('../../Data/', 'TestingSequence3', Inf);
+imagesSequence.fillFromTestingSequence('../../Data/', 'Sequence2', 2);
+
+displaySequence(imagesSequence, 8/5);
 
 %% Block Matching - bloc size paremeter influence testing %%
 
-blockSizes = {1, 3, 5, 7};
+blockSizes = {17, 21, 25, 29};
 
 velocitiesXSequences = [];
 velocitiesYSequences = [];
@@ -42,6 +44,5 @@ end
 
 %% Display %%
 
-overlaying = 1;
-
-displayBlockMatchingParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, overlaying);
+displayBlockMatchingParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, 1);
+displayBlockMatchingParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, 0);

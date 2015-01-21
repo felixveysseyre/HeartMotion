@@ -21,12 +21,14 @@ addpath('../external');
 %% Read images %%
 
 imagesSequence = sequence();
-imagesSequence.fillFromTestingSequence('../../Data/', 'TestingSequence3', Inf);
+imagesSequence.fillFromTestingSequence('../../Data/', 'Sequence2', 2);
+
+displaySequence(imagesSequence, 8/5);
 
 %% Correlation Phase - block size & resizing factor paremeter influence testing %%
 
-blockSizes = {1, 3, 5, 7};
-resizingFactors = {1, 3, 5, 7};
+blockSizes = {5, 9, 13, 17};
+resizingFactors = {1, 3, 5};
 
 velocitiesXSequences = [];
 velocitiesYSequences = [];
@@ -53,6 +55,5 @@ end
 
 %% Display %%
 
-overlaying = 1;
-
-displayPhaseCorrelationParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, resizingFactors, overlaying);
+displayPhaseCorrelationParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, resizingFactors, 1);
+displayPhaseCorrelationParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, resizingFactors, 0);
