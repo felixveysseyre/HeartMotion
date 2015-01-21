@@ -66,7 +66,7 @@ function [imagesSequence, velocitiesXSequence, velocitiesYSequence] = createTest
         scalingFactor = transformationParameters(1);
         image2 = scaleImage(image1, scalingFactor); 
         
-        [Vx, Vy] = createMotionFieldForScaling(h, w, image1, image2);
+        [Vx, Vy] = createMotionFieldForScaling(h, w, image1, image2, scalingFactor);
         
     elseif strcmp(transformationType, 'translation')
         

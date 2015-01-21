@@ -1,4 +1,4 @@
-function [Vx, Vy] = createMotionFieldForScaling( h, w, image1, image2)
+function [Vx, Vy] = createMotionFieldForScaling( h, w, image1, image2, scalingFactor)
 
     Vx = zeros(h, w);
     Vy = zeros(h, w);
@@ -15,7 +15,8 @@ function [Vx, Vy] = createMotionFieldForScaling( h, w, image1, image2)
             if image1(i, j) ==  max(image1(:)) || image2(i, j) ==  max(image2(:))
 
                 vector = [i0 - i, j0 - j];
-                vector = vector ./ norm(vector);
+                dist = norm(vector) * (1 - scalingFactor);
+                vector = vector ./ norm(vector) * dist;
                 
                 Vx(i, j) = vector(1);
                 Vy(i, j) = vector(2);
