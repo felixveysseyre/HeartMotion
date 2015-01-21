@@ -17,16 +17,27 @@ addpath('../blockMatching');
 addpath('../testingSequenceGenerator');
 addpath('../external');
 
-%% Read images %%
+%% Create testing sequence %%
 
-imagesSequence = sequence();
-imagesSequence.fillFromTestingSequence('../../Data/', 'Sequence2', 2);
+% Parameters %
 
-displaySequence(imagesSequence, 8/5);
+imageSize = [128, 128];
+
+formType = 'ellipse';
+formParameters = [20, 30, 10, 5/5*255, 0/5*255];
+
+transformationType = 'scaling';
+transformationParameters = [0.90];
+
+postProcessingParameters = [0, 0, 0, 255];
+
+% Compute %
+
+[imagesSequence, theoricalVelocitiesXSequence, theoricalVelocitiesYSequence] = createTestingSequence(imageSize, formType, formParameters, transformationType, transformationParameters, postProcessingParameters);
 
 %% Block Matching - bloc size paremeter influence testing %%
 
-blockSizes = {17, 21, 25, 29};
+blockSizes = {1, 3, 7, 15};
 
 velocitiesXSequences = [];
 velocitiesYSequences = [];
@@ -46,3 +57,6 @@ end
 
 displayBlockMatchingParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, 1);
 displayBlockMatchingParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, blockSizes, 0);
+
+
+displaySequence(imagesSequence, 16/10);

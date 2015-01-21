@@ -17,16 +17,27 @@ addpath('../external');
 
 %% Create testing sequence %%
 
-imagesSequence = sequence();
-imagesSequence.fillFromTestingSequence('../../Data/', 'Sequence2', 2);
+% Parameters %
 
-displaySequence(imagesSequence, 8/5);
+imageSize = [128, 128];
+
+formType = 'ellipse';
+formParameters = [20, 30, 10, 5/5*255, 0/5*255];
+
+transformationType = 'scaling';
+transformationParameters = [0.90];
+
+postProcessingParameters = [0, 0, 0, 255];
+
+% Compute %
+
+[imagesSequence, theoricalVelocitiesXSequence, theoricalVelocitiesYSequence] = createTestingSequence(imageSize, formType, formParameters, transformationType, transformationParameters, postProcessingParameters);
 
 %% Horn & Schunck - alpha paremeter influence testing %%
 
 numberOfIterations = 50;
 
-alphas = {50, 250, 500, 2000};
+alphas = {10, 50, 100, 350};
 
 velocitiesXSequences = [];
 velocitiesYSequences = [];
@@ -46,3 +57,5 @@ end
 
 displayHornAndSchunkParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, alphas, 1);
 displayHornAndSchunkParametersInfluence(imagesSequence, velocitiesXSequences, velocitiesYSequences, alphas, 0);
+
+displaySequence(imagesSequence, 16/10);
