@@ -12,6 +12,7 @@ addpath('../displaying');
 addpath('../hornAndSchunck');
 addpath('../lucasAndKanade');
 addpath('../blockMatching');
+addpath('../parametricModel');
 
 addpath('../testingSequenceGenerator');
 addpath('../external');
@@ -28,7 +29,7 @@ formParameters = [20, 30, 10, 5/5*255, 0/5*255];
 transformationType = 'scaling';
 transformationParameters = [0.90];
 
-postProcessingParameters = [0, 0, 0, 255];
+postProcessingParameters = [0, 0.10, 0, 255];
 
 % Compute %
 
@@ -36,7 +37,7 @@ postProcessingParameters = [0, 0, 0, 255];
 
 %% Compute velocities %%
 
-methodUsed = 1;
+methodUsed = 3;
 
 if methodUsed == 1
 
@@ -58,7 +59,7 @@ elseif methodUsed == 3
 
     %% Block Matching %%
 
-    blockSize = 3;
+    blockSize = 15;
     [velocitiesXSequence, velocitiesYSequence] = blockMatching(imagesSequence, blockSize);
 
 elseif methodUsed == 4
@@ -70,6 +71,14 @@ elseif methodUsed == 4
     filteringType = 'hamming';
     filteringKernelSize = 5;
     [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSequence, blockSize, resizingFactor, filteringType, filteringKernelSize);
+
+elseif methodUsed == 5
+
+    %% Parametric model (affine) %%
+
+    blockSize = 15;
+    windowType = 'gaussian';
+    [velocitiesXSequence, velocitiesYSequence] = parametricModel(imagesSequence, blockSize, windowType);
 
 end
 

@@ -13,6 +13,7 @@ addpath('../hornAndSchunck');
 addpath('../lucasAndKanade');
 addpath('../blockMatching');
 addpath('../correlationPhase');
+addpath('../parametricModel');
 
 addpath('../testingSequenceGenerator');
 addpath('../external');
@@ -20,25 +21,25 @@ addpath('../external');
 %% Read images %%
 
 imagesSequence = sequence();
-imagesSequence.fillFromTestingSequence('../../Data/', 'Sequence2', 4);
+imagesSequence.fillFromTestingSequence('../../Data/', 'TestingSequence3', Inf);
 
 %% Compute velocities %%
 
-methodUsed = 1;
+methodUsed = 5;
 
 if methodUsed == 1
 
     %% Horn & Schunck %%
 
-    alpha = 500;
-    numberOfIterations = 75;
+    alpha = 30;
+    numberOfIterations = 250;
     [velocitiesXSequence, velocitiesYSequence] = hornAndSchunck(imagesSequence, alpha, numberOfIterations);
 
 elseif methodUsed == 2
 
     %% Lucas & Kanade %%
 
-    blockSize = 17;
+    blockSize = 23;
     windowType = 'gaussian';
     [velocitiesXSequence, velocitiesYSequence] = lucasAndKenade(imagesSequence, blockSize, windowType);
 
@@ -46,7 +47,7 @@ elseif methodUsed == 3
 
     %% Block Matching %%
 
-    blockSize = 25;
+    blockSize = 19;
     [velocitiesXSequence, velocitiesYSequence] = blockMatching(imagesSequence, blockSize);
 
 elseif methodUsed == 4
@@ -59,12 +60,20 @@ elseif methodUsed == 4
     filteringKernelSize = 5;
     [velocitiesXSequence, velocitiesYSequence] = correlationPhase(imagesSequence, blockSize, resizingFactor, filteringType, filteringKernelSize);
 
+elseif methodUsed == 5
+
+    %% Parametric model (affine) %%
+
+    blockSize = 25;
+    windowType = 'gaussian';
+    [velocitiesXSequence, velocitiesYSequence] = parametricModel(imagesSequence, blockSize, windowType);
+
 end
 
 %% Display %%
 
 format = 16/10;
-quiverFactor = 0.1;
+quiverFactor = 0.2;
 autoTresholding = 1;
 overlaying = 1;
 
