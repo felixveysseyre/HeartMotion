@@ -25,7 +25,7 @@ imagesSequence.fillFromTestingSequence('../../Data/', 'Sequence2', 4);
 
 %% Compute velocities %%
 
-methodUsed = 5;
+methodUsed = 1;
 
 if methodUsed == 1
 

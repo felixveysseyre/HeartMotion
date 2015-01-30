@@ -25,7 +25,7 @@ imagesSequence.fillFromTestingSequence('../../Data/', 'TestingSequence3', Inf);
 
 %% Compute velocities %%
 
-methodUsed = 5;
+methodUsed = 1;
 
 if methodUsed == 1
 
@@ -73,7 +73,7 @@ end
 %% Display %%
 
 format = 16/10;
-quiverFactor = 0.2;
+quiverFactor = 0.1;
 autoTresholding = 1;
 overlaying = 1;
 

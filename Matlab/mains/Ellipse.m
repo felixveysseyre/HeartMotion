@@ -13,6 +13,7 @@ addpath('../hornAndSchunck');
 addpath('../lucasAndKanade');
 addpath('../blockMatching');
 addpath('../parametricModel');
+addpath('../correlationPhase');
 
 addpath('../testingSequenceGenerator');
 addpath('../external');
@@ -29,7 +30,7 @@ formParameters = [20, 30, 10, 5/5*255, 0/5*255];
 transformationType = 'scaling';
 transformationParameters = [0.90];
 
-postProcessingParameters = [0, 0.10, 0, 255];
+postProcessingParameters = [0, 0.1, 0, 255];
 
 % Compute %
 
@@ -37,7 +38,7 @@ postProcessingParameters = [0, 0.10, 0, 255];
 
 %% Compute velocities %%
 
-methodUsed = 3;
+methodUsed = 1;
 
 if methodUsed == 1
 
@@ -59,7 +60,7 @@ elseif methodUsed == 3
 
     %% Block Matching %%
 
-    blockSize = 15;
+    blockSize = 3;
     [velocitiesXSequence, velocitiesYSequence] = blockMatching(imagesSequence, blockSize);
 
 elseif methodUsed == 4
@@ -76,7 +77,7 @@ elseif methodUsed == 5
 
     %% Parametric model (affine) %%
 
-    blockSize = 15;
+    blockSize = 3;
     windowType = 'gaussian';
     [velocitiesXSequence, velocitiesYSequence] = parametricModel(imagesSequence, blockSize, windowType);
 
@@ -91,7 +92,7 @@ EPEsSequence = computeEPEs(theoricalVelocitiesXSequence, theoricalVelocitiesYSeq
 %% Displaying %%
 
 format = 16/10;
-quiverFactor = 1;
+quiverFactor = 0.5;
 autoTresholding = 1;
 overlaying = 1;
 
@@ -104,4 +105,5 @@ overlaying = 1;
 displaySummary(imagesSequence, velocitiesXSequence, velocitiesYSequence, 0.5*quiverFactor, autoTresholding, overlaying);
 
 displayNormAndPhaseErrors(theoricalNormSequence, experimentalNormSequence, errorNormSequence, theoricalPhaseSequence, experimentalPhaseSequence, errorPhaseSequence);
-displayEPEs(EPEsSequence, format);
+%displayEPEs(EPEsSequence, format);
+displayEPEsWFD(EPEsSequence, format, [0, 10]);
